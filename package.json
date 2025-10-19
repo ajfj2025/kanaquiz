@@ -1,6 +1,6 @@
 {
   "name": "kanaquiz",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Application for studying hiragana & katakana characters.",
   "main": "index.js",
   "scripts": {
