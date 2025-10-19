@@ -7,6 +7,7 @@ import CharacterGroup from './CharacterGroup';
 class ChooseCharacters extends Component {
   state = {
     errMsg : '',
+    kyokasho: this.props.kyokasho,
     selectedGroups: this.props.selectedGroups,
     showAlternatives: [],
     showSimilars: [],
@@ -198,7 +199,7 @@ class ChooseCharacters extends Component {
       this.setState({ errMsg: 'Choose at least one group!'});
       return;
     }
-    this.props.handleStartGame(this.state.selectedGroups);
+    this.props.handleStartGame(this.state.selectedGroups, this.state.kyokasho);
   }
 
   render() {
@@ -210,6 +211,18 @@ class ChooseCharacters extends Component {
               <div className="panel-body welcome">
                 <h4>Welcome to Kana Pro!</h4>
                 <p>Please choose the groups of characters that you'd like to be studying.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="panel panel-default">
+              <div className="panel-heading">Writing style</div>
+              <div className="panel-body selection-areas">
+                <div className="choose-row" onClick={()=>this.setState({kyokasho: !this.state.kyokasho})}>
+                  <span className={`glyphicon glyphicon-small ${this.state.kyokasho ? "glyphicon-check" : "glyphicon-unchecked"}`}></span> Kyokasho
+                </div>
               </div>
             </div>
           </div>

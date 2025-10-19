@@ -7,6 +7,7 @@ class GameContainer extends Component {
   state = {
     stage:1,
     isLocked: false,
+    kyokasho: true,
     decidedGroups: JSON.parse(localStorage.getItem('decidedGroups') || null) || []
   }
 
@@ -15,13 +16,13 @@ class GameContainer extends Component {
       this.setState({stage: 1});
   }
 
-  startGame = decidedGroups => {
+  startGame = (decidedGroups, kyokasho) => {
     if(parseInt(this.state.stage)<1 || isNaN(parseInt(this.state.stage)))
       this.setState({stage: 1});
     else if(parseInt(this.state.stage)>4)
       this.setState({stage: 4});
 
-    this.setState({decidedGroups: decidedGroups});
+    this.setState({decidedGroups: decidedGroups, kyokasho: kyokasho});
     localStorage.setItem('decidedGroups', JSON.stringify(decidedGroups));
     this.props.handleStartGame();
   }
@@ -44,6 +45,7 @@ class GameContainer extends Component {
         { this.props.gameState==='chooseCharacters' &&
             <ChooseCharacters selectedGroups={this.state.decidedGroups}
               handleStartGame={this.startGame}
+              kyokasho={this.state.kyokasho}
               stage={this.state.stage}
               isLocked={this.state.isLocked}
               lockStage={this.lockStage}
@@ -52,6 +54,7 @@ class GameContainer extends Component {
           { this.props.gameState==='game' &&
               <Game decidedGroups={this.state.decidedGroups}
                 handleEndGame={this.props.handleEndGame}
+                kyokasho={this.state.kyokasho}
                 stageUp={this.stageUp}
                 stage={this.state.stage}
                 isLocked={this.state.isLocked}

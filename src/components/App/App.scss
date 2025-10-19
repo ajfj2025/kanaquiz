@@ -39,3 +39,15 @@ body {
   content: "\2122";
   color: transparent !important;
 }
+@font-face {
+  font-family: "Klee One";
+  src: url("../../assets/fonts/KleeOne/KleeOne-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Klee One";
+  src: url("../../assets/fonts/KleeOne/KleeOne-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}

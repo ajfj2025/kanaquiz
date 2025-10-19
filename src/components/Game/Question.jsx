@@ -156,6 +156,18 @@ class Question extends Component {
     else return 'romaji';
   }
 
+  getAnswerStyle() {
+    if (this.props.kyokasho && this.getAnswerType() == 'kana')
+      return 'kyokasho';
+    else return '';
+  }
+
+  getQuestionStyle() {
+    if (this.props.kyokasho && this.getAnswerType() == 'romaji')
+      return 'kyokasho';
+    else return '';
+  }
+
   getShowableQuestion() {
     if(this.getAnswerType()=='kana')
       return findRomajisAtKanaKey(this.state.currentQuestion, kanaDictionary)[0];
@@ -227,13 +239,13 @@ class Question extends Component {
     return (
       <div className="text-center question col-xs-12">
         {this.getPreviousResult()}
-        <div className="big-character">{this.getShowableQuestion()}</div>
+        <div className={`big-character ${this.getQuestionStyle()}`}>{this.getShowableQuestion()}</div>
         <div className="answer-container">
           {
             this.props.stage<3 ?
               this.state.answerOptions.map((answer, idx) => {
                 return <AnswerButton answer={answer}
-                  className={btnClass}
+                  className={`${btnClass} ${this.getAnswerStyle()}`}
                   key={idx}
                   answertype={this.getAnswerType()}
                   handleAnswer={this.handleAnswer} />
